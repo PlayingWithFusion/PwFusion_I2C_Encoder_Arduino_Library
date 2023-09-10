@@ -44,9 +44,9 @@
 *	- Broadcast results to COM port
 *  Circuit:
 *    R3aktor     -->  RGB LED
-*    DIO pin 09  -->  Red Pin
-*    DIO pin 10  -->  Green Pin
-*    DIO pin 11  -->  Blue Pin
+*    DIO pin 09  -->  Red Pin with 220 ohm resistor in series
+*    DIO pin 10  -->  Green Pin with 220 ohm resistor in series
+*    DIO pin 11  -->  Blue Pin with 220 ohm in resistor series
 *    GND         -->  GND
 *    R3aktor     -->  I2C Encoder
 *    Qwiic pins  -->  Qwiic pins
