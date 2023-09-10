@@ -1,0 +1,18 @@
+####################################################
+#   Color mapping for PWFusion MAX31856 Lib
+####################################################
+
+####################################################
+#   Classes (KEYWORD1)
+####################################################
+Encoder	KEYWORD1
+
+####################################################
+#   Functions (KEYWORD2)
+####################################################
+getCount	KEYWORD2
+getBtnState	KEYWORD2
+getMillisBetweenRotations	KEYWORD2
+getRPM  KEYWORD2
+getDirection    KEYWORD2
+begin   KEYWORD2

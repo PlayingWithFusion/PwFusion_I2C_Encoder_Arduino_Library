@@ -1,13 +1,12 @@
 /***************************************************************************
-* File Name: Encoder.cpp
-* Processor/Platform: PwFusion R3aktor M0 (tested)
-* Development Environment: Arduino 2.1.1
+* File Name: PwFusion_Encoder_example.ino
+* Processor/Platform: R3aktor (tested)
+* Development Environment: Arduino 2.2.1
 *
-* Designed to simplify the integration of the PwFusion I2C Encoder board
-* Device (IFB-40001)
-*   ---> <Insert Link>
+* Designed for use with with Playing With Fusion I2C Rotary Encoder
+* interface board: IFB-40001
 *
-* Copyright � 2023 Playing With Fusion, Inc.
+* Copyright © 2015-18 Playing With Fusion, Inc.
 * SOFTWARE LICENSE AGREEMENT: This code is released under the MIT License.
 *
 * Permission is hereby granted, free of charge, to any person obtaining a
@@ -29,39 +28,52 @@
 * DEALINGS IN THE SOFTWARE.
 * **************************************************************************
 * REVISION HISTORY:
-* Author		    Date		    Comments
-* N. Johnson    2023Aug29   Original version
+* Author		  Date	    Comments
+* N. Johnson  2023Aug10 Original Version
 *
 * Playing With Fusion, Inc. invests time and resources developing open-source
 * code. Please support Playing With Fusion and continued open-source
 * development by buying products from Playing With Fusion!
+* **************************************************************************
+* ADDITIONAL NOTES:
+* This file contains functions to initialize and run a Playing With Fusion R3aktor in
+* order to communicate with the I2C Encoder board. Funcionality is as described below:
+*	- Configure R3aktor to receive information from the I2C Encoder board
+*	- Broadcast results to COM port
+*  Circuit:
+*    R3aktor     -->  I2C Encoder
+*    Qwiic pins  -->  Qwiic pins
 ***************************************************************************/
 
-#include "Arduino.h"
-#include "Encoder.h"
-#include "DataTransfer.h"
+// Include the PwFusion I2C Encoder library
+#include <PwFusion_Encoder.h>
 
-Encoder::Encoder(uint8_t adr) {
-  _adr = adr;
-  transfer = new DataTransfer(_adr, _numData);
+// Create a new encoder object
+Encoder enc;
+
+// Define the i2c address for the encoder
+// uint8_t ADR = 0x01;
+uint8_t ADR = 0x02;
+
+void setup() {
+  Serial.begin(9600);
+
+  // Start the encoder object and pass in the i2c address
+  enc.begin(ADR);
+
 }
 
-int Encoder::getCount() {
-  return transfer->getData(_reg_count);
-}
-
-int Encoder::getBtnState() {
-  return transfer->getData(_reg_btnState);
-}
-
-int Encoder::getMillisBetweenRotations() {
-  return transfer->getData(_reg_millisBetweenRotations);
-}
-
-int Encoder::getRPM() {
-  return transfer->getData(_reg_rpm);
-}
-
-int Encoder::getDirection() {
-  return transfer->getData(_reg_direction);
+void loop() {
+  
+  // Print out the data from the encoder device to the serial monitor
+  Serial.print("Count: ");
+  Serial.print(enc.getCount());
+  Serial.print("  Switch: ");
+  Serial.print(enc.getBtnState());
+  Serial.print("  Time between rotations: ");
+  Serial.print(enc.getMillisBetweenRotations());
+  Serial.print("  RPM: ");
+  Serial.print(enc.getRPM());
+  Serial.print("  Direction: ");
+  Serial.println(enc.getDirection());
 }

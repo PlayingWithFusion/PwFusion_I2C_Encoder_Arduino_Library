@@ -5,7 +5,7 @@
 *
 * Designed to simplify the integration of the PwFusion I2C Encoder board
 * Device (IFB-40001)
-*   ---> <Insert Link>
+*   ---> <Insert Link to product page>
 *
 * Copyright � 2023 Playing With Fusion, Inc.
 * SOFTWARE LICENSE AGREEMENT: This code is released under the MIT License.
@@ -37,11 +37,12 @@
 * development by buying products from Playing With Fusion!
 ***************************************************************************/
 
-#ifndef Encoder_h
-#define Encoder_h
+#ifndef PwFusion_Encoder_h
+#define PwFusion_Encoder_h
 
 #include "Arduino.h"
-#include "DataTransfer.h"
+//#include "DataTransfer.h"
+#include <PwFusion_Data_Transfer.h>
 
 class Encoder {
   private:
@@ -57,12 +58,13 @@ class Encoder {
     int _numData = 5;
 
   public:
-    Encoder(uint8_t adr);
+    Encoder(/*uint8_t adr*/);
     int getCount();
     int getBtnState();
     int getMillisBetweenRotations();
     int getRPM();
     int getDirection();
+    void begin(uint8_t adr);
 
 };
 
