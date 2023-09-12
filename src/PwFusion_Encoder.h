@@ -1,5 +1,5 @@
 /***************************************************************************
-* File Name: Encoder.h
+* File Name: PwFusion_Encoder.h
 * Processor/Platform: PwFusion R3aktor M0 (tested)
 * Development Environment: Arduino 2.1.1
 *
