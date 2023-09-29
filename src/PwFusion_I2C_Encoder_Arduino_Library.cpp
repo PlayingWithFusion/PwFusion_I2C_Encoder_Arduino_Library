@@ -1,11 +1,11 @@
 /***************************************************************************
-* File Name: PwFusion_Encoder.h
+* File Name: PwFusion_I2C_Encoder_Arduino_Library.cpp
 * Processor/Platform: PwFusion R3aktor M0 (tested)
 * Development Environment: Arduino 2.1.1
 *
 * Designed to simplify the integration of the PwFusion I2C Encoder board
 * Device (IFB-40001)
-*   ---> <Insert Link to product page>
+*   ---> <Insert Link>
 *
 * Copyright � 2023 Playing With Fusion, Inc.
 * SOFTWARE LICENSE AGREEMENT: This code is released under the MIT License.
@@ -37,35 +37,36 @@
 * development by buying products from Playing With Fusion!
 ***************************************************************************/
 
-#ifndef PwFusion_Encoder_h
-#define PwFusion_Encoder_h
-
 #include "Arduino.h"
-//#include "DataTransfer.h"
+#include "PwFusion_I2C_Encoder_Arduino_Library.h"
 #include <PwFusion_Data_Transfer.h>
 
-class Encoder {
-  private:
-    uint8_t _adr;
+Encoder::Encoder() {}
 
-    DataTransfer* transfer;
+void Encoder::begin(uint8_t adr) {
+  _adr = adr;
+  transfer = new DataTransfer();
+  transfer->begin(_adr, _numData);
+}
 
-    uint8_t _reg_btnState                       = 0x00;
-    uint8_t _reg_count                          = 0x01;
-    uint8_t _reg_millisBetweenRotations         = 0x02;
-    uint8_t _reg_rpm                            = 0x03;
-    uint8_t _reg_direction                      = 0x04;
-    int _numData = 5;
+int Encoder::getCount() {
+  return transfer->getData(_reg_count);
+}
 
-  public:
-    Encoder(/*uint8_t adr*/);
-    int getCount();
-    int getBtnState();
-    int getMillisBetweenRotations();
-    int getRPM();
-    int getDirection();
-    void begin(uint8_t adr);
+int Encoder::getBtnState() {
+  return transfer->getData(_reg_btnState);
+}
 
-};
+int Encoder::getMillisBetweenRotations() {
+  return transfer->getData(_reg_millisBetweenRotations);
+}
 
-#endif
+int Encoder::getRPM() {
+  return transfer->getData(_reg_rpm);
+}
+
+int Encoder::getDirection() {
+  int dir = transfer->getData(_reg_direction);
+  if (dir == 6) dir = -1; else dir = 1;
+  return dir;
+}

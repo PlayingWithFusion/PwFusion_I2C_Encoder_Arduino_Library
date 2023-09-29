@@ -53,7 +53,7 @@
 ***************************************************************************/
 
 // Include the PwFusion I2C Encoder library
-#include <PwFusion_Encoder.h>
+#include <PwFusion_I2C_Encoder_Arduino_Library.h>
 
 // Define the color in relation to its index in the array
 #define RED_LED 0

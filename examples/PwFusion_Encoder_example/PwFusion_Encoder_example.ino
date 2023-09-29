@@ -46,7 +46,7 @@
 ***************************************************************************/
 
 // Include the PwFusion I2C Encoder library
-#include <PwFusion_Encoder.h>
+#include <PwFusion_I2C_Encoder_Arduino_Library.h>
 
 // Create a new encoder object
 Encoder enc;
