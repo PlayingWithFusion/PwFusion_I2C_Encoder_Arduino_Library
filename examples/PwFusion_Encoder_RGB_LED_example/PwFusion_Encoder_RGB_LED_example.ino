@@ -66,8 +66,10 @@
 #define LED_VALUE_STEP  10
 
 // Define the i2c address for the encoder
-// uint8_t ADR = 0x01;
-uint8_t ADR = 0x02;
+uint8_t ADR = 0x01;
+// uint8_t ADR = 0x02;
+// uint8_t ADR = 0x03;
+// uint8_t ADR = 0x04;
 
 // Variable to keep track of the number of times the encoder button has been pressed
 int btnCounter = 0;
