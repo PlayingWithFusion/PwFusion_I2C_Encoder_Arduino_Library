@@ -53,9 +53,9 @@
 Encoder enc;
 
 // Define the i2c address for the encoder
-uint8_t ADR = 0x01;
+// uint8_t ADR = 0x01;
 // uint8_t ADR = 0x02;
-// uint8_t ADR = 0x03;
+uint8_t ADR = 0x03;
 // uint8_t ADR = 0x04;
 
 void setup() {
